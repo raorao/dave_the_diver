@@ -35,8 +35,8 @@ DEBUG = os.getenv("DEBUG", "False") == "True"
 
 import socket
 
-ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "127.0.0.1,localhost").split(",") + [socket.gethostbyname('localhost')]
-
+# ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "127.0.0.1,localhost").split(",") + [socket.gethostbyname('localhost')]
+ALLOWED_HOSTS = ['*'] # todo fix this
 # Application definition
 
 INSTALLED_APPS = [
