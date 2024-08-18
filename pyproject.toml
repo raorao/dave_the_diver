@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "dave"
+version = "0.1.0"
+description = ""
+authors = ["Srinivas Rao-Mouw <rao@artisan.co>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+django = "^5.1"
+dj-database-url = "^2.2.0"
+gunicorn = "^23.0.0"
+psycopg2-binary = "^2.9.9"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
