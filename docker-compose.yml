@@ -18,6 +18,6 @@ services:
       - POSTGRES_NAME=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-      - DEVELOPMENT_MODE=True
+      - DATABASE_URL=postgres://postgres:postgres@db:5432/postgres
     depends_on:
       - db
