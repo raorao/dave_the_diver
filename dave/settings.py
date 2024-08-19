@@ -37,6 +37,7 @@ import socket
 
 # ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "127.0.0.1,localhost").split(",") + [socket.gethostbyname('localhost')]
 ALLOWED_HOSTS = ['*'] # todo fix this
+CSRF_TRUSTED_ORIGINS = ['*'] # todo fix this too
 # Application definition
 
 INSTALLED_APPS = [
