@@ -35,9 +35,9 @@ DEBUG = os.getenv("DEBUG", "False") == "True"
 
 import socket
 
-# ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "127.0.0.1,localhost").split(",") + [socket.gethostbyname('localhost')]
-ALLOWED_HOSTS = ['*'] # todo fix this
-CSRF_TRUSTED_ORIGINS = ['*'] # todo fix this too
+ALLOWED_HOSTS = ['*'] # todo fix this for health check server
+origins = os.getenv("DJANGO_ALLOWED_HOSTS", "127.0.0.1,localhost").split(",") + [socket.gethostbyname('localhost')]
+CSRF_TRUSTED_ORIGINS = [f'http://{origin}' for origin in origins] + [f'https://{origin}' for origin in origins]
 # Application definition
 
 INSTALLED_APPS = [
