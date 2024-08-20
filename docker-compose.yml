@@ -7,6 +7,10 @@ services:
       - POSTGRES_DB=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
+  redis:
+    image: redis:7.0.3-alpine
+    ports:
+      - "6379:6379"
   web:
     build: .
     command: python manage.py runserver 0.0.0.0:8080
@@ -15,9 +19,18 @@ services:
     ports:
       - "8080:8080"
     environment:
-      - POSTGRES_NAME=postgres
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
       - DATABASE_URL=postgres://postgres:postgres@db:5432/postgres
+      - CELERY_BROKER_URL=redis://redis:6379/0
     depends_on:
       - db
+  celery-worker:
+    build: .
+    command: celery -A dave worker -l info
+    volumes:
+      - .:/code
+    environment:
+      - DATABASE_URL=postgres://postgres:postgres@db:5432/postgres
+      - CELERY_BROKER_URL=redis://redis:6379/0
+    depends_on:
+      - db
+      - redis
